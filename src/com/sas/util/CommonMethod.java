@@ -1,5 +1,7 @@
 package com.sas.util;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -13,6 +15,7 @@ public class CommonMethod {
 	/**
 	 * to get seconds between current time and midnight
 	 * 
+	 * @author GOWRI SANKAR R
 	 * @return
 	 */
 	public static int getExpiryInSeconds() {
@@ -31,9 +34,9 @@ public class CommonMethod {
 	/**
 	 * Method to insert access log input details
 	 * 
+	 * @author GOWRI SANKAR R
 	 * @param accessLog
 	 * @return
-	 * @author Dinesh
 	 */
 	public static void inputAccessLogDetails(AccessLogDTO accessLogDto, Object pObj, String userId) {
 		ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 1, TimeUnit.SECONDS,
@@ -62,5 +65,37 @@ public class CommonMethod {
 				}
 			}
 		});
+	}
+
+	/**
+	 * Encrypt the String to MD5
+	 * 
+	 * @author GOWRI SANKAR R
+	 * @param passkey
+	 * @return
+	 */
+	public static String PasswordEncryption(String passkey) {
+		String MD5pass = "";
+		final byte[] defaultBytes = passkey.getBytes();
+		try {
+			final MessageDigest md5MsgDigest = MessageDigest.getInstance("MD5");
+			md5MsgDigest.reset();
+			md5MsgDigest.update(defaultBytes);
+			final byte messageDigest[] = md5MsgDigest.digest();
+
+			final StringBuffer hexString = new StringBuffer();
+			for (final byte element : messageDigest) {
+				final String hex = Integer.toHexString(0xFF & element);
+				if (hex.length() == 1) {
+					hexString.append('0');
+				}
+				hexString.append(hex);
+			}
+			passkey = hexString + "";
+		} catch (final NoSuchAlgorithmException nsae) {
+			nsae.printStackTrace();
+		}
+		MD5pass = passkey;
+		return MD5pass;
 	}
 }
