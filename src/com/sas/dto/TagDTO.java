@@ -1,8 +1,11 @@
 package com.sas.dto;
 
-public class TagDto {
+import java.util.List;
+
+public class TagDTO {
 	private int id;
 	private String tagType;
+	private List<String> tagTypes;
 	private String name;
 	private int orderBy;
 
@@ -36,6 +39,14 @@ public class TagDto {
 
 	public void setOrderBy(int orderBy) {
 		this.orderBy = orderBy;
+	}
+
+	public List<String> getTagTypes() {
+		return tagTypes;
+	}
+
+	public void setTagTypes(List<String> tagTypes) {
+		this.tagTypes = tagTypes;
 	}
 
 }

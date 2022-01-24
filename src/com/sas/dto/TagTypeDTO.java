@@ -1,6 +1,6 @@
 package com.sas.dto;
 
-public class TagTypeDto {
+public class TagTypeDTO {
 
 	private int id;
 	private String tagType;

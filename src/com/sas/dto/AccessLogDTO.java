@@ -1,6 +1,6 @@
 package com.sas.dto;
 
-public class AccessLogDto {
+public class AccessLogDTO {
 	private String url;
 	private String userId;
 	private String deviceIp;
