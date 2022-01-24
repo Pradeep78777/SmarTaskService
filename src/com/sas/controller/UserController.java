@@ -25,19 +25,30 @@ public class UserController {
 	HttpServletRequest request;
 	java.sql.Timestamp created_on = new java.sql.Timestamp(Calendar.getInstance().getTimeInMillis());
 
+	/**
+	 * Method for user login
+	 * 
+	 * @author GOWRI SANKAR R
+	 * @param requestContext
+	 * @param pDto
+	 * @return
+	 */
 	@Path("/login")
 	@POST
 	@Secured
 	@Produces(MediaType.APPLICATION_JSON)
 	public ResponseDTO userLogin(@Context ContainerRequestContext requestContext, EmployeeDetailsDTO pDto) {
-		accessLog.setDeviceIp(request.getRemoteAddr());
+		ResponseDTO response = new ResponseDTO();
+		String deviceIp = request.getHeader("X-Forwarded-For");
+		accessLog.setDeviceIp(deviceIp);
 		accessLog.setUserAgent(request.getHeader("user-agent"));
 		accessLog.setUrl(requestContext.getUriInfo().getPath());
 		accessLog.setCreatedOn(created_on);
 		// accessLog.setDomain(new
 		// URL(request.getRequestURL().toString()).getHost());
+		pDto.setDeviceIp(deviceIp);
 		CommonMethod.inputAccessLogDetails(accessLog, pDto, String.valueOf(pDto.getEmpId()));
-		ResponseDTO response = UserService.getInstance().userLogin(pDto);
+		response = UserService.getInstance().userLogin(pDto);
 		return response;
 	}
 }
