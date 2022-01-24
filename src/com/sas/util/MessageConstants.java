@@ -36,4 +36,8 @@ public class MessageConstants {
 	public static final String SUGGESTION_FOR_INVALID_START_DATE = "Start Date must be today or above";
 	public static final String SUGGESTION_FOR_INVALID_END_DATE = "End Date must be today or above";
 	public static final String SUGGESTION_FOR_CHECK_DESCRIPTION_LENGTH = "Description must be greater than 50 characters";
+
+	public static final String TASK_CREATED_SUCCESSFULLY = "Your Task is Successfully Created";
+	public static final String TASK_CREATED_FAILED = "Task Created Failed. Please Contact Admin!";
+	public static final String TASK_CREATED_BUT_FILE_UPLOAD_FAILED = "Task Created Successfully but File upload Failed";
 }

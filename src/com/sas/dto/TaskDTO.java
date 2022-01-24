@@ -1,5 +1,9 @@
 package com.sas.dto;
 
+import java.sql.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class TaskDTO {
 	private int empId;
 	private int projectId;
@@ -7,13 +11,16 @@ public class TaskDTO {
 	private String description;
 	private String priority;
 	private String taskdocLocation;
-	private String startDate;
-	private String endDate;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	private Date startDate;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	private Date endDate;
 	private String taskStatus;
 	private String dueDateChangeCount;
 	private String estHour;
 	private int assignedTo;
 	private String manager;
+	private String fileURL;
 
 	public int getEmpId() {
 		return empId;
@@ -63,11 +70,11 @@ public class TaskDTO {
 		this.taskdocLocation = taskdocLocation;
 	}
 
-	public String getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(String endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
@@ -111,12 +118,20 @@ public class TaskDTO {
 		this.manager = manager;
 	}
 
-	public String getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(String startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
+	}
+
+	public String getFileURL() {
+		return fileURL;
+	}
+
+	public void setFileURL(String fileURL) {
+		this.fileURL = fileURL;
 	}
 
 }
