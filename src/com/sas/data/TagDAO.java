@@ -22,11 +22,14 @@ public class TagDAO {
 	}
 
 	/**
+	 * Method to get all tag Type from table based on given Criteria
 	 * 
-	 * @param paymentDto
+	 * @author Pradeep Ravichandran
+	 * @param tagDto
 	 * @return
 	 */
-	public List<TagDTO> getAllPaymentRecordsByCondition(TagDTO tagDto) {
+
+	public List<TagDTO> getAllTagRecordsByCondition(TagDTO tagDto) {
 		List<TagDTO> tagLists = null;
 		TagDTO dto = null;
 		try {
