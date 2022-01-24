@@ -13,6 +13,7 @@ public class EmployeeDetailsDTO {
 	private int wrongEntry;
 	private int isLocked;
 	private String deviceIp;
+	private String userSessionId;
 
 	public int getEmpId() {
 		return empId;
@@ -108,6 +109,14 @@ public class EmployeeDetailsDTO {
 
 	public void setDeviceIp(String deviceIp) {
 		this.deviceIp = deviceIp;
+	}
+
+	public String getUserSessionId() {
+		return userSessionId;
+	}
+
+	public void setUserSessionId(String userSessionId) {
+		this.userSessionId = userSessionId;
 	}
 
 }

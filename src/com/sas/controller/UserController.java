@@ -13,7 +13,6 @@ import javax.ws.rs.core.MediaType;
 import com.sas.dto.AccessLogDTO;
 import com.sas.dto.EmployeeDetailsDTO;
 import com.sas.dto.ResponseDTO;
-import com.sas.filter.Secured;
 import com.sas.service.UserService;
 import com.sas.util.CommonMethod;
 
@@ -35,7 +34,6 @@ public class UserController {
 	 */
 	@Path("/login")
 	@POST
-	@Secured
 	@Produces(MediaType.APPLICATION_JSON)
 	public ResponseDTO userLogin(@Context ContainerRequestContext requestContext, EmployeeDetailsDTO pDto) {
 		ResponseDTO response = new ResponseDTO();
