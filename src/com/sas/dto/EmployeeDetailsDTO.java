@@ -12,6 +12,7 @@ public class EmployeeDetailsDTO {
 	private String passwordUpdatedOn;
 	private int wrongEntry;
 	private int isLocked;
+	private String deviceIp;
 
 	public int getEmpId() {
 		return empId;
@@ -99,6 +100,14 @@ public class EmployeeDetailsDTO {
 
 	public void setIsLocked(int isLocked) {
 		this.isLocked = isLocked;
+	}
+
+	public String getDeviceIp() {
+		return deviceIp;
+	}
+
+	public void setDeviceIp(String deviceIp) {
+		this.deviceIp = deviceIp;
 	}
 
 }
