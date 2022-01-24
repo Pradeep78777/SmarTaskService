@@ -1,6 +1,13 @@
 package com.sas.util;
 
 import java.util.Calendar;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sas.dto.AccessLogDTO;
+import com.sas.service.AccessLogService;
 
 public class CommonMethod {
 	/**
@@ -19,5 +26,41 @@ public class CommonMethod {
 		long millisecond = midnight.getTime().getTime() - now.getTime().getTime();
 		int second = (int) (millisecond / 1000);
 		return second;
+	}
+
+	/**
+	 * Method to insert access log input details
+	 * 
+	 * @param accessLog
+	 * @return
+	 * @author Dinesh
+	 */
+	public static void inputAccessLogDetails(AccessLogDTO accessLogDto, Object pObj, String userId) {
+		ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 1, TimeUnit.SECONDS,
+				new LinkedBlockingQueue<Runnable>());
+		executor.execute(new Runnable() {
+			@Override
+			public void run() {
+				AccessLogDTO accessLog = new AccessLogDTO();
+				ObjectMapper mapper = new ObjectMapper();
+				String convert = "";
+				try {
+					convert = mapper.writeValueAsString(pObj);
+					accessLog.setInput(convert);
+					accessLog.setUrl(accessLogDto.getUrl());
+					accessLog.setDeviceIp(accessLogDto.getDeviceIp());
+					accessLog.setUserId(userId);
+					accessLog.setCreatedOn(accessLogDto.getCreatedOn());
+					accessLog.setUserAgent(accessLogDto.getUserAgent());
+					accessLog.setDomain(accessLogDto.getDomain());
+					AccessLogService logService = new AccessLogService();
+					logService.insertAccessLogInputRecords(accessLog);
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					executor.shutdown();
+				}
+			}
+		});
 	}
 }
