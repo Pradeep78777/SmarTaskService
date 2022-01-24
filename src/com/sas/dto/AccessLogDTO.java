@@ -7,6 +7,11 @@ public class AccessLogDTO {
 	private String userAgent;
 	private String contentType;
 	private String authenticateToken;
+	private java.sql.Timestamp createdOn;
+	private long elapsedTime;
+	private String responseData;
+	private String input;
+	private String domain;
 
 	public String getUrl() {
 		return url;
@@ -54,6 +59,46 @@ public class AccessLogDTO {
 
 	public void setAuthenticateToken(String authenticateToken) {
 		this.authenticateToken = authenticateToken;
+	}
+
+	public java.sql.Timestamp getCreatedOn() {
+		return createdOn;
+	}
+
+	public void setCreatedOn(java.sql.Timestamp createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public long getElapsedTime() {
+		return elapsedTime;
+	}
+
+	public void setElapsedTime(long elapsedTime) {
+		this.elapsedTime = elapsedTime;
+	}
+
+	public String getResponseData() {
+		return responseData;
+	}
+
+	public void setResponseData(String responseData) {
+		this.responseData = responseData;
+	}
+
+	public String getInput() {
+		return input;
+	}
+
+	public void setInput(String input) {
+		this.input = input;
+	}
+
+	public String getDomain() {
+		return domain;
+	}
+
+	public void setDomain(String domain) {
+		this.domain = domain;
 	}
 
 }
