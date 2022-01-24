@@ -17,4 +17,11 @@ public class AppConstants {
 
 	public static final String SECURED_METHODS = "securedMethods";
 	public static final String UNAUTHORIZED = "Unauthorized";
+
+	// For File Upload
+
+	public static final String PROJ_DIR = "C://Stoneage//TaskManager//";
+	public static final String UPLOADS_DIR = "file//uploads//";
+	public static final String SITE_URL = "http://13.59.180.22//";
+	public static final String UPLOAD_URL = SITE_URL + UPLOADS_DIR;
 }

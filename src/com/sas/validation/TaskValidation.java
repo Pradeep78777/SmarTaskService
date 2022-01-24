@@ -48,8 +48,8 @@ public class TaskValidation {
 					validationDTOs.add(validation);
 				}
 				// check start date
-				if (StringUtil.isNotNullOrEmpty(taskCriteria.getStartDate())) {
-					Date startDate = DateUtil.parseString(taskCriteria.getStartDate(), "dd/MM/yyyy");
+				if (taskCriteria.getStartDate() != null) {
+					Date startDate = taskCriteria.getStartDate();
 					Date todayDate = DateUtil.getTodayDate();
 					if (startDate.before(todayDate)) {
 						validation = new ValidationDTO();
@@ -59,8 +59,8 @@ public class TaskValidation {
 					}
 				}
 				// check start date
-				if (StringUtil.isNotNullOrEmpty(taskCriteria.getEndDate())) {
-					Date endDate = DateUtil.parseString(taskCriteria.getEndDate(), "dd/MM/yyyy");
+				if (taskCriteria.getEndDate() != null) {
+					Date endDate = taskCriteria.getEndDate();
 					Date todayDate = DateUtil.getTodayDate();
 					if (endDate.before(todayDate)) {
 						validation = new ValidationDTO();
