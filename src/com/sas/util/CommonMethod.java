@@ -98,4 +98,22 @@ public class CommonMethod {
 		MD5pass = passkey;
 		return MD5pass;
 	}
+
+	/**
+	 * Method to generate the random 256 key
+	 * 
+	 * @author GOWRI SANKAR R
+	 * @return
+	 */
+	public static String random256Key() {
+		int size = 256;
+		String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789" + "abcdefghijklmnopqrstuvxyz";
+		StringBuilder sb = new StringBuilder(size);
+		for (int i = 0; i < size; i++) {
+			int index = (int) (AlphaNumericString.length() * Math.random());
+			sb.append(AlphaNumericString.charAt(index));
+		}
+		String num = sb.toString();
+		return num;
+	}
 }

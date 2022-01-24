@@ -11,7 +11,9 @@ public class AppConstants {
 	// Login Message
 	public static final String LOGIN_SUCESS = "Login sucessfull";
 	public static final String PASSWORD_WRONG = "Given User name or password is wrong";
-	public static final String USER_NAME_BLOCKED = "User";
+	public static final String EMP_ID_INVALID = "Employee Id or email is Invalid";
+	public static final String USER_BLOCKED = "User is Blocked Please contact Administrator";
+	public static final String INVALID_PARAMETER = "Given Parameter's are invalid";
 
 	// For Authorization Filter
 
