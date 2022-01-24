@@ -29,14 +29,14 @@ public class TagDAO {
 	 * @return
 	 */
 
-	public List<TagDTO> getAllTagRecordsByCondition(TagDTO tagDto) {
+	public List<TagDTO> getAllTagRecordsByCondition(TagDTO tagCriteria) {
 		List<TagDTO> tagLists = null;
 		TagDTO dto = null;
 		try {
 			conn = DBUtil.getConnection();
 			StringBuffer queryString = new StringBuffer();
 			queryString.append("SELECT id,tag_type,name,order_by FROM tag ");
-			List<String> conditions = getConditon(tagDto);
+			List<String> conditions = getConditon(tagCriteria);
 			if (!conditions.isEmpty()) {
 				queryString.append(" where " + StringUtil.convertConditionsListToString(conditions));
 				queryString.append(" order by order_by asc ");
@@ -61,14 +61,21 @@ public class TagDAO {
 		return tagLists;
 	}
 
-	private List<String> getConditon(TagDTO tagDto) {
+	/**
+	 * Method to form the where condition for the tag table
+	 * 
+	 * @author Pradeep Ravichandran
+	 * @param tagCriteria
+	 * @return
+	 */
+	private List<String> getConditon(TagDTO tagCriteria) {
 		List<String> conditions = new ArrayList<String>();
 		conditions.add(" active_status = 1 ");
-		if (StringUtil.isNotNullOrEmpty(tagDto.getTagType())) {
-			conditions.add(" tag_type = " + tagDto.getTagType() + " ");
+		if (StringUtil.isNotNullOrEmpty(tagCriteria.getTagType())) {
+			conditions.add(" tag_type = " + tagCriteria.getTagType() + " ");
 		}
-		if (StringUtil.isListNotNullOrEmpty(tagDto.getTagTypes())) {
-			conditions.add(" tag_type in " + StringUtil.getInSearch(tagDto.getTagTypes()) + " ");
+		if (StringUtil.isListNotNullOrEmpty(tagCriteria.getTagTypes())) {
+			conditions.add(" tag_type in " + StringUtil.getInSearch(tagCriteria.getTagTypes()) + " ");
 		}
 		return conditions;
 	}
