@@ -32,6 +32,8 @@ public class TagDAO {
 	public List<TagDTO> getAllTagRecordsByCondition(TagDTO tagCriteria) {
 		List<TagDTO> tagLists = null;
 		TagDTO dto = null;
+		PreparedStatement pStmnt = null;
+		ResultSet rSet = null;
 		try {
 			conn = DBUtil.getConnection();
 			StringBuffer queryString = new StringBuffer();
@@ -41,8 +43,8 @@ public class TagDAO {
 				queryString.append(" where " + StringUtil.convertConditionsListToString(conditions));
 				queryString.append(" order by order_by asc ");
 			}
-			PreparedStatement pStmt = conn.prepareStatement(queryString.toString());
-			ResultSet rSet = pStmt.executeQuery();
+			pStmnt = conn.prepareStatement(queryString.toString());
+			rSet = pStmnt.executeQuery();
 			if (rSet != null) {
 				tagLists = new ArrayList<TagDTO>();
 				while (rSet.next()) {
@@ -56,6 +58,20 @@ public class TagDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if (rSet != null) {
+					rSet.close();
+				}
+				if (pStmnt != null) {
+					pStmnt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		return tagLists;

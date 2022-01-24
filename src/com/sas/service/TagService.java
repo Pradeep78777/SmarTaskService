@@ -5,6 +5,7 @@ import java.util.List;
 import com.sas.data.TagDAO;
 import com.sas.dto.ResponseDTO;
 import com.sas.dto.TagDTO;
+import com.sas.util.AppConstants;
 import com.sas.util.StringUtil;
 
 public class TagService {
@@ -28,9 +29,12 @@ public class TagService {
 		ResponseDTO responseDTO = new ResponseDTO();
 		List<TagDTO> tagDTOList = TagDAO.getInstance().getAllTagRecordsByCondition(tagCriteria);
 		if (StringUtil.isListNotNullOrEmpty(tagDTOList)) {
+			responseDTO.setStatus(AppConstants.SUCCESS_STATUS);
+			responseDTO.setMessage(AppConstants.SUCCESS);
 			responseDTO.setResult(tagDTOList);
 		} else {
-
+			responseDTO.setStatus(AppConstants.FAILED_STATUS);
+			responseDTO.setMessage(AppConstants.FAILED);
 		}
 		return responseDTO;
 	}

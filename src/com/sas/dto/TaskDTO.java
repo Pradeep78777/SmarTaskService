@@ -7,7 +7,7 @@ public class TaskDTO {
 	private String description;
 	private String priority;
 	private String taskdocLocation;
-	private String startDte;
+	private String startDate;
 	private String endDate;
 	private String taskStatus;
 	private String dueDateChangeCount;
@@ -63,14 +63,6 @@ public class TaskDTO {
 		this.taskdocLocation = taskdocLocation;
 	}
 
-	public String getStartDte() {
-		return startDte;
-	}
-
-	public void setStartDte(String startDte) {
-		this.startDte = startDte;
-	}
-
 	public String getEndDate() {
 		return endDate;
 	}
@@ -117,6 +109,14 @@ public class TaskDTO {
 
 	public void setManager(String manager) {
 		this.manager = manager;
+	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
 
 }
